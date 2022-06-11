@@ -26,6 +26,10 @@ body {
   margin: 2% 0% 2% 0%;
 }
 
+.filterWrapper button.selected {
+    background: #F5A9BC;
+}
+
 .headerText {
   color: #F5A9BC;
   font-size: 3em;
@@ -127,7 +131,6 @@ ul {
 .pigTile:hover {
   transform: scale(1.05);
 }
-
 
 .App-logo {
   animation: App-logo-spin infinite 5s linear;
