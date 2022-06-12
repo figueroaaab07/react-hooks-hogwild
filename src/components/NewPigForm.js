@@ -6,6 +6,7 @@ function NewPigForm({onPigFormSubmit}) {
     pigSpecialty: "",
     pigGreased: false,
     pigWeight: 0,
+    pigHighestMedal: "wood",
     pigImage: ""
   });
 
@@ -21,15 +22,20 @@ function NewPigForm({onPigFormSubmit}) {
       specialty: formData.pigSpecialty,
       greased: formData.pigGreased,
       weight: formData.pigWeight,
-      "highest medal achieved": formData.highestMedal,
+      "highest medal achieved": formData.pigHighestMedal,
       image: formData.pigImage
     };
+    console.log(newPig);
     onPigFormSubmit(newPig);
   }
 
   function handleChange(event) {
     const name = event.target.name;
     let value = event.target.value;
+  
+    if (event.target.type === "checkbox") {
+      value = event.target.checked;
+    }
   
     setFormData({
       ...formData,
@@ -38,31 +44,40 @@ function NewPigForm({onPigFormSubmit}) {
   }
 
   return (
-    <form className="new-pig-form" onSubmit={handleSubmit}>
-      <label>
-        Name
-        <input type="text" name="pigName" value={formData.pigName} onChange={handleChange} />
-      </label>
-      <label>
-        Specialty
-        <input type="text" name="pigSpecialty" value={formData.pigSpecialty} onChange={handleChange} />
-      </label>
-      <label>
-        Greased
-        <input type="checkbox" name="pigGreased" value={formData.pigGreased} onChange={handleChange} />
-      </label>
-      <label>
-        Highest Medal Achieved
-        <select name="pigHighestMedal" value={formData.pigHighestMedal} onChange={handleChange} >
-          {medalsOption}
-        </select>
-      </label>
-      <label>
-        Image
-        <input type="text" name="pigImage" value={formData.pigImage} onChange={handleChange} />
-      </label>
-      <input type="submit" value="Add pig" />
-    </form>
+    <div>
+      <h3 className="smallHeader">Add a Pig</h3>
+      <form className="new-pig-form" onSubmit={handleSubmit}>
+        <div>
+          <label>Name:</label>
+          <input type="text" name="pigName" value={formData.pigName} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Specialty:</label> 
+          <input type="text" name="pigSpecialty" value={formData.pigSpecialty} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Greased:</label>   
+          <input type="checkbox" name="pigGreased" value={formData.pigGreased} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Weight (pounds):</label>  
+          <input type="text" name="pigWeight" value={formData.pigWeight} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Highest Medal Achieved:</label>
+          <select name="pigHighestMedal" value={formData.pigHighestMedal} onChange={handleChange} >
+            {medalsOption}
+          </select>
+        </div>
+        <div>
+          <label>Image (Url):</label>
+          <input type="text" name="pigImage" value={formData.pigImage} onChange={handleChange} />
+        </div>
+        <div>
+          <input type="submit" value="Add pig" />
+        </div>
+      </form>
+    </div>
   );
 }
 
